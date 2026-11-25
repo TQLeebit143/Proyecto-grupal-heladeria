@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#E80F61">
+  <meta name="description" content="Solo Gelatos — Heladería artesanal en La Paz: catálogo, pedidos, reservas, POS, inventario y gestión integral.">
+  <title>Solo Gelatos — Heladería Artesanal</title>
+  <link rel="icon" type="image/png" href="./images/logo.png">
+  <link rel="stylesheet" href="css/fuentes.css">
+  <link rel="stylesheet" href="css/temas.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/animaciones.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!-- Semana 3 - Accesibilidad a11y y Contraste WCAG -->
+  <link rel="stylesheet" href="css/accesibilidad.css">
+  <!-- Semana 2 - Arquitectura PWA Offline-First -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="images/app-icon-192.png">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <!-- Semana 1 - Menu Hamburguesa -->
+      <button type="button" class="burger" id="burguerBtn" aria-label="Abrir menú lateral" aria-expanded="false"><i></i><i></i><i></i></button>
+      <div class="brand-wrap">
+        <img src="images/logo.png" alt="Logotipo de Solo Gelatos" class="brand-logo">
+        <div class="header-titulo">
+          <h1>Solo Gelatos</h1>
+          <small id="headerSubtitulo">Heladería artesanal · La Paz</small>
+        </div>
+      </div>
+      <div class="search">
+        <label for="headerSearch" class="sr-only">Buscar sabores y productos</label>
+        <input id="headerSearch" type="search" placeholder="Buscar sabores, cafés, tortas..." aria-label="Buscar productos en catálogo">
+        <span class="search-ico" aria-hidden="true"></span>
+      </div>
+      <div class="header-acciones">
+        <span id="badgeConexion" class="badge-conexion" role="status">ONLINE</span>
+        <span id="badgeRol" class="badge-rol">Cliente</span>
+        <button type="button" class="ib" id="btnNotificaciones" aria-label="Ver notificaciones recientes">
+          <span class="bell-ico" aria-hidden="true"></span>
+          <span class="badge" id="notifCount">2</span>
+        </button>
+        <!-- Semana 1 - Modo Oscuro -->
+        <button type="button" class="ib" id="themeBtn" aria-label="Alternar tema oscuro y claro"></button>
+        <!-- Semana 3 - Accesibilidad a11y y Contraste WCAG -->
+        <button type="button" class="ib" id="btnSimularContraste" aria-label="Alternar modo de alto contraste WCAG" aria-pressed="false">
+          <span class="contraste-ico" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn-carrito-header" id="btnCarritoHeader" aria-label="Abrir carrito de compras">
+          <span class="carrito-ico" aria-hidden="true"></span>
+          <span class="carrito-label">Carrito</span>
+          <span class="carrito-badge" id="headerCartCount">0</span>
+          <span class="carrito-total-pill" id="headerCartTotal">Bs 0</span>
+        </button>
+        <button type="button" class="user-btn" id="btnUsuarioCuenta" aria-label="Abrir inicio de sesión y gestión de cuenta">
+          <span class="av" id="userAvatar">I</span>
+          <span class="user-meta">
+            <strong id="userName">Invitado</strong>
+            <small id="userRoleLabel">Cliente</small>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Semana 3 - Flexbox Responsivo Vertical y Horizontal -->
+    <div class="contenedor-app">
+      <nav id="navMenu" class="nav-drawer" aria-label="Menú desplegable de vistas"></nav>
+      <div class="shade" id="shade"></div>
+      <main class="area-contenido" id="mainContenido">
+        <section id="view" aria-live="polite"></section>
+
+        <!-- Semana 3 - Desarrollo Agil y Smoke Testing -->
+        <!-- Semana 3 - Cierre A11Y HTML5 y HMR -->
+        <section id="panelAuditoriaAdmin" class="panel-auditoria" aria-label="Panel exclusivo de Smoke Testing y Auditoría A11Y" hidden>
+          <h2>Verificación Técnica: Smoke Test y Auditoría A11Y</h2>
+          <p class="ayuda-modulo">Usa estos dos botones para auditar en vivo las etiquetas semánticas HTML5, botones, enlaces válidos e imágenes con atributo alt.</p>
+          <div class="modal-actions" style="justify-content:flex-start;margin-top:8px">
+            <button type="button" class="btn p" id="btnSmokeTest">Ejecutar Smoke Test DOM</button>
+            <button type="button" class="btn" id="btnAuditarA11Y">Auditar Accesibilidad A11Y</button>
+          </div>
+          <div id="salidaAudit" class="salida-auditoria" aria-live="polite">Pulsa Ejecutar Smoke Test DOM para inspeccionar el documento.</div>
+          <div id="reporteA11Y" class="salida-auditoria" role="status" aria-live="polite">Pulsa Auditar Accesibilidad A11Y para verificar la semántica HTML5.</div>
+        </section>
+      </main>
+      <nav id="dockAcciones" class="dock-acciones" aria-label="Navegación principal"></nav>
+    </div>
+
+    <!-- Semana 3 - Cierre A11Y HTML5 y HMR -->
+    <footer class="app-footer">
+      <span>Solo Gelatos · Heladería Artesanal · La Paz, Bolivia</span>
+      <span>Diseño Web II (SIS-0141) · Guía Maestra Evolutiva v13.0</span>
+    </footer>
+  </div>
+
+  <div id="modal-root"></div>
+
+  <!-- Carrito Lateral Deslizable (Solo Cliente) -->
+  <div id="drawerCarritoBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+  <aside id="drawerCarrito" class="drawer-carrito" role="dialog" aria-modal="true" aria-labelledby="tituloDrawerCarrito">
+    <div class="drawer-carrito__head">
+      <div>
+        <span class="eyebrow">Pedido Solo Gelatos</span>
+        <h2 id="tituloDrawerCarrito">Tu Carrito</h2>
+      </div>
+      <button type="button" class="ib" id="btnCerrarDrawerCarrito" aria-label="Cerrar carrito">X</button>
+    </div>
+    <div class="drawer-carrito__body">
+      <div id="drawerCartLines" class="drawer-carrito__items"></div>
+      <div class="campo-grupo" style="margin-top:12px">
+        <label for="drawerDireccion">Dirección o sucursal de retiro</label>
+        <input id="drawerDireccion" type="text" placeholder="Ej. Retiro en Sucursal Central / Av. Arce">
+      </div>
+      <div class="drawer-carrito__recientes">
+        <h3>Mis pedidos recientes</h3>
+        <div id="listaPedidosDrawer" class="event-list"></div>
+      </div>
+    </div>
+    <div class="drawer-carrito__foot">
+      <div class="row total" style="margin-top:0">
+        <b>Total</b>
+        <b id="drawerCartTotal">0 Bs</b>
+      </div>
+      <button type="button" class="btn p" id="btnDrawerPagar" style="width:100%">Confirmar y Pagar</button>
+    </div>
+  </aside>
+
+  <!-- Semana 2 - Calculador Modal 30s y Toast -->
+  <div id="modalConfirmacion" class="modal-timer-backdrop" role="dialog" aria-modal="true" aria-labelledby="tituloModalTimer">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">Tarifa Flash Solo Gelatos</span>
+          <h3 id="tituloModalTimer">Confirmar Paquete de Evento</h3>
+        </div>
+        <button type="button" class="ib" id="btnCerrarModalTimer" aria-label="Cerrar ventana de tarifa flash">X</button>
+      </div>
+      <p class="ayuda-modulo">Confirma tu cotización antes de que el temporizador de 30 segundos llegue a cero para mantener el precio promocional.</p>
+      <div id="contadorModal" class="contador-flash" role="timer">00:30</div>
+      <p id="detalleModalTimer" class="muted">Tarifa calculada lista para confirmar.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn outline" id="btnCancelarModalTimer">Cancelar</button>
+        <button type="button" class="btn p" id="btnConfirmarModalTimer">Confirmar Tarifa</button>
+      </div>
+    </div>
+  </div>
+  <div id="toastAlerta" class="toast-alerta" role="status" aria-live="polite"></div>
+
+  <!-- Semana 2 - Fetch Lazy Loading y Bubbling -->
+  <div id="lightboxImagenVisor" class="lightbox-visor" role="dialog" aria-modal="true" aria-label="Visor de imagen ampliada">
+    <div class="lightbox-caja">
+      <img id="lightboxImagenFoto" src="images/logo.png" alt="Vista ampliada de producto Solo Gelatos">
+      <div class="lightbox-pie">
+        <strong id="lightboxImagenTitulo">Solo Gelatos</strong>
+        <button type="button" class="btn p" id="btnCerrarLightbox" aria-label="Cerrar visor ampliado">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vendor/jquery-3.7.1.min.js"></script>
+  <script src="js/vendor/purify-3.1.6.min.js"></script>
+  <script defer src="js/iconos.js"></script>
+  <script defer src="js/supabase-api.js"></script>
+  <script defer src="js/categorias.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/temas.js"></script>
+  <script defer src="js/menu.js"></script>
+  <script defer src="js/chrome.js"></script>
+  <script defer src="js/validacion.js"></script>
+  <script defer src="js/navegacion.js"></script>
+  <script defer src="js/bitacora-eventos.js"></script>
+  <script defer src="js/pwa.js"></script>
+  <script defer src="js/accesibilidad.js"></script>
+  <script defer src="js/smoke-test.js"></script>
+  <script defer src="js/auditoria-a11y.js"></script>
+</body>
+</html>

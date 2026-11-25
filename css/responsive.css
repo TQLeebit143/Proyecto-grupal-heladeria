@@ -1,0 +1,99 @@
+/* Semana 3 - Flexbox Responsivo Vertical y Horizontal */
+@media (max-width: 767px) {
+  header.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 8px 10px;
+    min-height: 62px;
+  }
+  .brand-wrap { gap: 8px; min-width: 0; flex: 1; }
+  .brand-logo { position: static; margin: 0; width: 38px; height: 38px; flex-shrink: 0; }
+  .header-acciones { gap: 4px; flex-shrink: 0; }
+  .search,
+  .user-btn .user-meta,
+  .badge-rol { display: none; }
+  .user-btn { padding: 4px; min-width: 44px; justify-content: center; }
+  .hero-gelato { flex-direction: column; padding: 20px; }
+  .hero-gelato__art { width: 100%; }
+  .header-titulo h1 { font-size: 17px; }
+  .header-titulo small { display: none; }
+  .badge-conexion { font-size: .7rem; padding: 4px 8px; }
+
+  /* Eliminacion de menus duplicados segun rol en movil */
+  body[data-rol="cliente"] #burguerBtn { display: none; }
+  body[data-rol="cliente"] #navMenu,
+  body[data-rol="cliente"] #shade { display: none; }
+  body[data-rol="encargado"] .dock-acciones,
+  body[data-rol="admin"] .dock-acciones { display: none; }
+  body[data-rol="encargado"] .area-contenido,
+  body[data-rol="admin"] .area-contenido { padding-bottom: 24px; }
+  body[data-rol="encargado"] .app-footer,
+  body[data-rol="admin"] .app-footer { padding-bottom: 18px; }
+
+  .nav-drawer { top: 62px; }
+  .shade { top: 62px; }
+}
+
+@media (max-width: 480px) {
+  #btnNotificaciones,
+  #btnSimularContraste { display: none; }
+  .header-titulo h1 { font-size: 15.5px; }
+  .badge-conexion { font-size: .68rem; padding: 4px 7px; gap: 4px; }
+  .btn-carrito-header { padding: 4px 9px; gap: 5px; }
+}
+
+@media (min-width: 768px), (orientation: landscape) {
+  .contenedor-app { flex-direction: row; }
+  .dock-acciones {
+    order: -1;
+    position: sticky;
+    top: 70px;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 8px;
+    width: 215px;
+    flex-shrink: 0;
+    height: calc(100dvh - 70px);
+    overflow-y: auto;
+    border-top: 0;
+    border-right: 1px solid var(--line);
+    box-shadow: none;
+    padding: 14px 10px;
+    transition: width .25s ease, padding .25s ease, opacity .2s ease;
+  }
+  .dock-acciones.collapsed {
+    width: 0;
+    padding: 0;
+    border-right: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .dock-acciones a {
+    flex: 0 0 auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+  .area-contenido { padding: 24px 28px 32px; }
+  .app-footer { padding: 14px 28px; }
+  .grid2 { grid-template-columns: 1fr 1.2fr; }
+  .pos { grid-template-columns: 1.55fr 1fr; }
+  .form-row { grid-template-columns: 1fr 1fr; }
+  .toast-alerta { bottom: 24px; }
+}
+
+@media (min-width: 768px) {
+  .nav-drawer,
+  .nav-drawer.show,
+  .shade,
+  .shade.on { display: none; }
+}

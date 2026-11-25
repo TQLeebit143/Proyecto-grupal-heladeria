@@ -1,0 +1,15 @@
+# Archivos del sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.idea/
+*.swp
+
+# Dependencias (el proyecto no usa npm, pero por si acaso)
+node_modules/
+
+# Registros y temporales
+*.log
+*.tmp

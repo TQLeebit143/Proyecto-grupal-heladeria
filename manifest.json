@@ -1,0 +1,27 @@
+{
+  "id": "./index.html",
+  "name": "Solo Gelatos | Cliente y Administración",
+  "short_name": "Solo Gelatos",
+  "description": "Catálogo, pedidos, reservas, POS, inventario y administración de Solo Gelatos con inicio de sesión por roles.",
+  "lang": "es-BO",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F6F5D8",
+  "theme_color": "#E80F61",
+  "icons": [
+    {
+      "src": "./images/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./images/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+/* Semana 1 - Modo Oscuro */
+:root{
+  --pri:#E80F61;
+  --pri-dark:#C90B51;
+  --pri-soft:#E80F6114;
+  --sec:#10AAA6;
+  --sec-soft:#10AAA618;
+  --bg:#F6F5D8;
+  --card:#FFFFFF;
+  --tx:#2B2327;
+  --mut:#6E6165;
+  --line:#EDE4DD;
+  --bar:#E80F61;
+  --sh:0 4px 18px #624A3510;
+  --sh-lg:0 12px 30px #624A3519;
+}
+:root[data-theme="dark"],
+body.dark-mode{
+  --pri:#F15B91;
+  --pri-dark:#E80F61;
+  --pri-soft:#F15B911c;
+  --sec:#48C7C0;
+  --sec-soft:#48C7C01c;
+  --bg:#1C1719;
+  --card:#272023;
+  --tx:#F6EFEA;
+  --mut:#B8AAB0;
+  --line:#ffffff1a;
+  --bar:#E0789C;
+  --sh:0 4px 18px #0004;
+  --sh-lg:0 12px 30px #0007;
+}
